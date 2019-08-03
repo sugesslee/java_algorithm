@@ -14,13 +14,6 @@ import java.util.Scanner;
  * @author red
  * @version 1.0.0 2019-08-03 08:35
  * @since 1.0.0
- * input
- * AABCD
- * CDAA
- * AABCD
- * ABCD
- * AABCD
- * BDD
  */
 public class StringRotation {
 	public static void main(String[] args) {
@@ -52,12 +45,16 @@ public class StringRotation {
 
 	private static int is_have(String source, List<String> target) {
 		for (String str : target) {
-			int len = str.length() - source.length();
-			for (int i = 0; i < len + 1; i++) {
-				if (source.equals(str.substring(i, source.length() + i))) {
-					return 1;
-				}
+			if (str.contains(source)){
+				return 1;
 			}
+//			int len = str.length() - source.length();
+
+//			for (int i = 0; i < len + 1; i++) {
+//				if (source.equals(str.substring(i, source.length() + i))) {
+//					return 1;
+//				}
+//			}
 		}
 		// 不包含返回0
 		return 0;
