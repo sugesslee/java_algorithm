@@ -1,5 +1,8 @@
 package com.pinduoduo;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * pinduoduo test
  * <pre>
@@ -13,4 +16,21 @@ package com.pinduoduo;
  * @since 1.0.0
  */
 public class test {
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		String input = in.nextLine();
+
+		get_kh(input);
+	}
+
+	private static void get_kh(String input) {
+
+		System.out.println(input);
+
+		String result = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
+
+
+		System.out.println(result);
+	}
 }
