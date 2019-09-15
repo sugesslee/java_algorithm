@@ -63,7 +63,7 @@ public class Solution {
 		return (int) st.pop();//返回运算结果
 	}
 
-	//将算术表达式转换为后缀表达式的函数，结果一字符串的形式返回
+	//将算术表达式转换为后缀表达式的函数，结果以字符串的形式返回
 	private String converToPostfix(String expression) throws Exception {
 		Stack<Character> st = new Stack<>();   //初始化一个运算符栈
 		String postfix = new String();   //用于储存后缀表达式
