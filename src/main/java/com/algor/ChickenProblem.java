@@ -1,5 +1,7 @@
 package com.algor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -22,24 +24,28 @@ public class ChickenProblem {
 		int N = in.nextInt();
 		int cock, hen, chick;
 		int count = 0;
-		int[][] result = new int[4][3];
 		int cockSum = 0;
-		for (cock = 0; cock <= 20; cock++) {
-			hen = (100 - 7 * cock) / 4;
-			chick = (300 + 3 * cock) / 4;
+		for (cock = 0; cock <= 100; cock++) {
+			hen = (N - 7 * cock) / 4;
+			chick = (3 * N + 3 * cock) / 4;
 			if (hen <= 0 || chick <= 0) {
 				break;
 			}
 			if ((chick % 3 == 0) && (cock + hen + chick == N) && (cock * 5 + hen * 3 + chick / 3 == N)) {
-				result[count][0] = cock;
-				result[count][1] = hen;
-				result[count][2] = chick;
+//				List temp = new ArrayList();
+//				temp.add(0, cock);
+//				temp.add(1, hen);
+//				temp.add(2, chick);
+//				result[count][0] = cock;
+//				result[count][1] = hen;
+//				result[count][2] = chick;
+//				resultLst.add(temp);
 				cockSum += cock;
-				count++;
+				count += 1;
 			}
 		}
 		if (count == 0) {
-			System.out.println(count + " " + "-1");
+			System.out.print(count + " " + -1);
 		} else {
 			System.out.print(count + " " + cockSum);
 		}
