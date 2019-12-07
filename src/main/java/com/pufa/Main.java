@@ -17,9 +17,7 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-
 		List<String> out = new ArrayList<>();
-
 		Scanner in = new Scanner(System.in);
 
 		int t = in.nextInt();
@@ -27,15 +25,9 @@ public class Main {
 		for (int i = 0; i < t; i++) {
 			int a = in.nextInt();
 			int b = in.nextInt();
-
 			boolean pri = isPrime(a * a - b * b);
 			out.add(pri ? "YES" : "NO");
 		}
-
-
-//		for (String element : out) {
-//			System.out.println(element);
-//		}
 
 		for (int i = 0; i < t; i++) {
 			if (i == t - 1) {
