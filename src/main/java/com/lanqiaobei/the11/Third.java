@@ -11,7 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <pre>
@@ -28,26 +30,32 @@ public class Third {
 
 	public static void main(String[] args) throws IOException {
 		List<String> resultList = new ArrayList<>();
-		String path = "/root/workspace/program/out.txt";
-		Third third = new Third();
-		Complex result = third.mul(new Complex(new BigInteger(String.valueOf(2)), new BigInteger(String.valueOf(3))),
-				new Complex(new BigInteger(String.valueOf(2)), new BigInteger(String.valueOf(3))));
+		String path = "./out.txt";
+		BigInteger a = new BigInteger(String.valueOf(2));
+		BigInteger b = new BigInteger(String.valueOf(3));
+		BigInteger c = new BigInteger(String.valueOf(2));
+		BigInteger d = new BigInteger(String.valueOf(3));
 
-		for (int i = 3; i <= 123454; i++) {
-			result = third
-					.mul(result, new Complex(new BigInteger(String.valueOf(2)), new BigInteger(String.valueOf(3))));
-//			System.out.println("the " + i + ", result " + result.toString());
-			resultList.add("the " + i + ", result " + result.toString());
+//		a = a.multiply(c).add(b.multiply(d).negate());
+//		b = new BigInteger(String.valueOf(2)).multiply(d).add(b.multiply(c));
+
+		Map<String, BigInteger> tempResult = mul(a, b, c, d);
+		a = tempResult.get("real");
+		b = tempResult.get("image");
+		for (int i = 3; i <= 123456; i++) {
+			Map<String, BigInteger> tempResult1 = mul(a, b, c, d);
+			a = tempResult1.get("real");
+			b = tempResult1.get("image");
 		}
-//		System.out.println("result " + result.toString());
-		resultList.add("result " + result.toString());
-
+		resultList.add("\n a " + a.toString());
+		resultList.add("\n b " + b.toString() + "\n");
 		writeFile(path, resultList);
+		System.out.println("end");
 	}
 
 	private static void writeFile(String pathName, List<String> resultList) throws IOException {
-		/* 写入Txt文件 */
-		File path = new File(pathName); // 相对路径，如果没有则要建立一个新的output。txt文件
+		/* 写入txt文件 */
+		File path = new File(pathName); // 相对路径，如果没有则要建立一个新的output.txt文件
 		path.createNewFile(); // 创建新文件
 		BufferedWriter out = new BufferedWriter(new FileWriter(pathName));
 		out.write(resultList.toString()); // \r\n即为换行
@@ -55,50 +63,15 @@ public class Third {
 		out.close(); // 最后记得关闭文件
 	}
 
-	public Complex mul(Complex complex1, Complex complex2) {
-		BigInteger real1 = complex1.getReal();
-		BigInteger image1 = complex1.getImage();
-		BigInteger real2 = complex2.getReal();
-		BigInteger image2 = complex2.getImage();
-		BigInteger newReal = real1.multiply(real2).subtract(image1.multiply(image2));
-		BigInteger newImage = real1.multiply(image2).add(real2.multiply(image1));
+	private static Map<String, BigInteger> mul(BigInteger a, BigInteger b, BigInteger c, BigInteger d) {
+		Map<String, BigInteger> result = new HashMap<>();
 
-		return new Complex(newReal, newImage);
-	}
+		BigInteger real = a.multiply(c).add(b.multiply(d).negate());
+		BigInteger image = a.multiply(d).add(b.multiply(c));
 
-	public static class Complex {
+		result.put("real", real);
+		result.put("image", image);
 
-		BigInteger real;
-		BigInteger image;
-
-		public Complex(BigInteger real, BigInteger image) {
-			this.real = real;
-			this.image = image;
-		}
-
-
-		public BigInteger getReal() {
-			return real;
-		}
-
-		public void setReal(BigInteger real) {
-			this.real = real;
-		}
-
-		public BigInteger getImage() {
-			return image;
-		}
-
-		public void setImage(BigInteger image) {
-			this.image = image;
-		}
-
-		@Override
-		public String toString() {
-			return "Complex{" +
-					"real=" + real +
-					", image=" + image +
-					'}';
-		}
+		return result;
 	}
 }
