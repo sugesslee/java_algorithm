@@ -1,6 +1,7 @@
 package com.basic.linkedlist;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * <pre>
@@ -15,8 +16,10 @@ import java.util.LinkedList;
  */
 public class OriginLinkedList {
 	public static void main(String[] args) {
-		LinkedList linkedList = new LinkedList();
+		List linkedList = new LinkedList();
 
 		linkedList.add(1);
+
+		System.out.println(linkedList.get(0));
 	}
 }

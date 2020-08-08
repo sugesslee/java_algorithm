@@ -12,22 +12,43 @@ package com.basic.linkedlist;
  * @since 1.0.0
  */
 public class LinkedList {
+	// 头结点
+	LinkNode head = null;
+
 	public static void main(String[] args) {
-		LinkNode head = new LinkNode(0);
-		LinkNode node1 = new LinkNode(1);
-		LinkNode node2 = new LinkNode(2);
-		LinkNode node3 = new LinkNode(3);
-		head.setNext(node1);
-		node1.setNext(node2);
-		node2.setNext(node3);
+		LinkedList linkedList = new LinkedList();
+		linkedList.addNode(3);
+		linkedList.addNode(4);
+		linkedList.addNode(5);
 
-		System.out.println(head);
-
-		LinkNode tmpHead = reversal(head);
-		System.out.println(tmpHead);
+		linkedList.printLinkList();
 	}
 
-	public static LinkNode reversal(LinkNode head) {
+	/**
+	 * 添加节点
+	 *
+	 * @param data 节点的数据
+	 */
+	public void addNode(int data) {
+		LinkNode newNode = new LinkNode(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		LinkNode tmp = head;
+		while (tmp.getNext() != null) {
+			tmp = tmp.getNext();
+		}
+		tmp.setNext(newNode);
+	}
+
+	/**
+	 * 链表反转
+	 *
+	 * @param head 头结点
+	 * @return 反转后的头结点
+	 */
+	public LinkNode reversal(LinkNode head) {
 		if (head == null || head.getNext() == null) {
 			return head;
 		}
@@ -47,5 +68,16 @@ public class LinkedList {
 		head.setNext(null);
 
 		return preNode;
+	}
+
+	/**
+	 * 打印链表
+	 */
+	public void printLinkList() {
+		LinkNode node = head;
+		while (node.getNext() != null) {
+			System.out.print(node);
+			node = node.getNext();
+		}
 	}
 }
